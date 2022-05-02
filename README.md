@@ -11,7 +11,7 @@ the test cases are function for which you can provide custom wallets by giving t
 
 Note: all default arweave wallets included in this repo are empty.
 
-# 1. Pianity Contract Test Case
+## 1. Pianity Contract Test Case
 
 The build of the contract is located at `data/pianityContract.js` and its sources are available
 at
@@ -27,7 +27,7 @@ before 20 iterations.
 
 This being the default test case, you can run `yarn start` to launch it now.
 
-# 2. Ping Contract Test Case
+## 2. Ping Contract Test Case
 
 Located at `data/pingContract.js`, this is an extremely simple contract that contains as its state
 a boolean field `ping` and only two possible interactions:
