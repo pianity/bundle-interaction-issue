@@ -37,12 +37,15 @@ async function init(
 ) {
     const { state } = await contract.readState();
 
-    if (state.tokens.DOL.balances[account1Address] === "1") {
-        return transfer(contract, account1Wallet, account2Address);
-    } else if (state.tokens.DOL.balances[account2Address] === "1") {
-        return transfer(contract, account2Wallet, account1Address);
-    } else {
+    if (
+        state.tokens.DOL.balances[account1Address] !== "1" &&
+        state.tokens.DOL.balances[account2Address] !== "1"
+    ) {
         throw new Error("Accounts balance are not configured correctly");
+    }
+
+    if (state.tokens.DOL.balances[account2Address] === "1") {
+        await transfer(contract, account2Wallet, account1Address);
     }
 }
 
@@ -60,8 +63,6 @@ export async function runPianityContractTest(
     const contract = smartweave.contract<State>(contractId);
 
     await init(contract, account1Wallet, account1Address, account2Wallet, account2Address);
-
-    await sleep(5);
 
     for (let i = 0; i < 1000; i++) {
         console.log(`########## round ${i} ##########`);
